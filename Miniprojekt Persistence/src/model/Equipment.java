@@ -1,8 +1,8 @@
 package model;
 
-public class Order {
+public class Equipment {
 
-	public Order() {
+	public Equipment() {
 		// TODO Auto-generated constructor stub
 	}
 

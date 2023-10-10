@@ -1,6 +1,6 @@
 package database;
 
-public class OrderDB {
+public class SalesOrderDB implements ODBIF{
 
 	public OrderDB() {
 		// TODO Auto-generated constructor stub
