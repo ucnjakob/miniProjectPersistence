@@ -76,7 +76,6 @@ public class Order extends JDialog {
 			panel.add(lblVareNummer, gbc_lblVareNummer);
 			
 			txtVareNUmmer = new JTextField();
-			txtVareNUmmer.setText("Indtast Varenummer");
 			GridBagConstraints gbc_txtVareNUmmer = new GridBagConstraints();
 			gbc_txtVareNUmmer.fill = GridBagConstraints.HORIZONTAL;
 			gbc_txtVareNUmmer.anchor = GridBagConstraints.NORTH;
@@ -95,7 +94,6 @@ public class Order extends JDialog {
 			panel.add(lblAntal, gbc_lblAntal);
 			
 			txtAntal = new JTextField();
-			txtAntal.setText("Antal");
 			GridBagConstraints gbc_txtAntal = new GridBagConstraints();
 			gbc_txtAntal.fill = GridBagConstraints.HORIZONTAL;
 			gbc_txtAntal.anchor = GridBagConstraints.NORTH;
@@ -114,7 +112,6 @@ public class Order extends JDialog {
 			panel.add(lblVarehus, gbc_lblVarehus);
 			
 			txtVareHus = new JTextField();
-			txtVareHus.setText("Varehus");
 			GridBagConstraints gbc_txtVareHus = new GridBagConstraints();
 			gbc_txtVareHus.fill = GridBagConstraints.HORIZONTAL;
 			gbc_txtVareHus.anchor = GridBagConstraints.NORTH;
