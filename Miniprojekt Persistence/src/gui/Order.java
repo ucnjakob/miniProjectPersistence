@@ -13,6 +13,8 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JTable;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Order extends JDialog {
 
@@ -39,6 +41,7 @@ public class Order extends JDialog {
 	 * Create the dialog.
 	 */
 	public Order() {
+		setModal(true);
 		setBounds(100, 100, 729, 557);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -170,6 +173,12 @@ public class Order extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton okButton = new JButton("OK");
+				okButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						okClicked();
+						
+					}
+				});
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
@@ -180,5 +189,10 @@ public class Order extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
+	}
+
+	public void okClicked() {
+		this.dispose();
+		this.setVisible(false);
 	}
 }

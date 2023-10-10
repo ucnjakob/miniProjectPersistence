@@ -13,6 +13,8 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Login extends JDialog {
 
@@ -89,6 +91,11 @@ public class Login extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton okButton = new JButton("OK");
+				okButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						LoginClicked();
+					}
+				});
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
@@ -99,6 +106,14 @@ public class Login extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
+	}
+
+	public void LoginClicked() {
+		MainMenu mainmenu = new MainMenu();
+		mainmenu.setVisible(true);
+		this.dispose();
+		this.setVisible(false);
+		
 	}
 
 }

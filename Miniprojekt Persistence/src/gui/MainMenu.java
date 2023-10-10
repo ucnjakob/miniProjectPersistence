@@ -64,6 +64,11 @@ public class MainMenu extends JFrame {
 		panel_1.add(lblUser);
 		
 		JButton btnNewButton = new JButton("Logout");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				LogoutClicked();
+			}
+		});
 		panel_1.add(btnNewButton);
 		
 		JPanel panel_2 = new JPanel();
@@ -85,6 +90,7 @@ public class MainMenu extends JFrame {
 		JButton btnOrder = new JButton("Create Order");
 		btnOrder.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				OrderMenu();
 			}
 		});
 		GridBagConstraints gbc_btnOrder = new GridBagConstraints();
@@ -100,6 +106,19 @@ public class MainMenu extends JFrame {
 		gbc_btnNewButton_1.gridx = 1;
 		gbc_btnNewButton_1.gridy = 1;
 		panel_3.add(btnNewButton_1, gbc_btnNewButton_1);
+	}
+
+	public void LogoutClicked() {
+		Login login = new Login();
+		login.setVisible(true);
+		this.dispose();
+		this.setVisible(false);
+		
+	}
+
+	public void OrderMenu() {
+		Order order = new Order();
+		order.setVisible(true);
 	}
 
 }
