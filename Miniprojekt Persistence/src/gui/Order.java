@@ -7,6 +7,10 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controller.*;
+import model.*;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import java.awt.GridBagLayout;
@@ -14,6 +18,7 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JTable;
 import java.awt.event.ActionListener;
+import java.util.List;
 import java.awt.event.ActionEvent;
 
 public class Order extends JDialog {
@@ -22,7 +27,9 @@ public class Order extends JDialog {
 	private JTextField txtVareNUmmer;
 	private JTextField txtAntal;
 	private JTextField txtVareHus;
-	private JTable table;
+	private JTable tblorder;
+	private OrderLineTableModel otm;
+	private OrderController orderController;
 
 	/**
 	 * Launch the application.
@@ -132,14 +139,14 @@ public class Order extends JDialog {
 			gbc_btnTilføj.gridy = 3;
 			panel.add(btnTilføj, gbc_btnTilføj);
 			
-			table = new JTable();
-			GridBagConstraints gbc_table = new GridBagConstraints();
-			gbc_table.fill = GridBagConstraints.BOTH;
-			gbc_table.insets = new Insets(0, 0, 5, 0);
-			gbc_table.gridwidth = 5;
-			gbc_table.gridx = 0;
-			gbc_table.gridy = 5;
-			panel.add(table, gbc_table);
+			tblorder = new JTable();
+			GridBagConstraints gbc_tblorder = new GridBagConstraints();
+			gbc_tblorder.fill = GridBagConstraints.BOTH;
+			gbc_tblorder.insets = new Insets(0, 0, 5, 0);
+			gbc_tblorder.gridwidth = 5;
+			gbc_tblorder.gridx = 0;
+			gbc_tblorder.gridy = 5;
+			panel.add(tblorder, gbc_tblorder);
 			
 			JButton btnFjern = new JButton("Fjern Valgte Vare");
 			GridBagConstraints gbc_btnFjern = new GridBagConstraints();
@@ -188,11 +195,19 @@ public class Order extends JDialog {
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
+			//UpdateOrder();
 		}
 	}
 
 	public void okClicked() {
 		this.dispose();
 		this.setVisible(false);
+	}
+	
+	public void UpdateOrder()
+	{
+		List<Orderline> ols = orderController.getOrderLines();
+		otm = new OrderLineTableModel(ols);
+		this.tblorder.setModel(otm);
 	}
 }
