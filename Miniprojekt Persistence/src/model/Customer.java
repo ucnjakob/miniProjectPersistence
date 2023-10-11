@@ -2,16 +2,23 @@ package model;
 
 public class Customer {
 
+	int phoneNo;
 	String fname;
 	String lname;
 	String customerAddress;
 	String zipcode;
 	String city;
-	int phoneNo;
 	boolean isClub;
 	
-	public Customer() {
-		// TODO Auto-generated constructor stub
+	public Customer(int phoneNo, String fname, String lname, String customerAddress, String zipcode, String city, boolean isClub)
+	{
+		this.phoneNo = phoneNo;
+		this.fname = fname;
+		this.lname = lname;
+		this.customerAddress = customerAddress;
+		this.zipcode = zipcode;
+		this.city = city;
+		this.isClub = isClub;
 	}
 
 	public String getFname() {
