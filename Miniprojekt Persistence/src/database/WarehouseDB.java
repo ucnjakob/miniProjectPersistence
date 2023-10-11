@@ -1,6 +1,6 @@
 package database;
 
-public class WarehouseDB {
+public class WarehouseDB implements WDBIF{
 
 	public WarehouseDB() {
 		// TODO Auto-generated constructor stub
