@@ -64,7 +64,7 @@ public class OrderLineTableModel extends AbstractTableModel {
 
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
-		OrderLine ol = orderLines.get(rowIndex);
+		Orderline ol = orderLines.get(rowIndex);
 		String res = "";
 		switch(columnIndex)
 		{
@@ -75,7 +75,7 @@ public class OrderLineTableModel extends AbstractTableModel {
 			res += ol.getQuantity();
 			break;
 		case 2:
-			res += (ol.getSalesProduct().getPrice() + " DKK");
+			res += (ol.getProduct().getPrice() + " DKK");
 			break;
 		case 3:
 			res += (ol.getTotalAmount() + " DKK");
