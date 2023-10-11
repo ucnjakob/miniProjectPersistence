@@ -1,29 +1,55 @@
 package model;
 
 public class Orderline {
+	
+	Product product;
+	int qty;
+	int priceSoldAt;
+	String productName;
+	int salesOrderID;
 
 	public Orderline() {
 		// TODO Auto-generated constructor stub
 	}
 
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
+	public int getQty() {
+		return qty;
+	}
+
+	public void setQty(int qty) {
+		this.qty = qty;
+	}
+
+	public int getPriceSoldAt() {
+		return priceSoldAt;
+	}
+
+	public void setPriceSoldAt(int priceSoldAt) {
+		this.priceSoldAt = priceSoldAt;
+	}
+
 	public String getProductName() {
-		// TODO Auto-generated method stub
-		return null;
+		return productName;
 	}
 
-	public String getQuantity() {
-		// TODO Auto-generated method stub
-		return null;
+	public void setProductName(String productName) {
+		this.productName = productName;
 	}
 
-	public Object getProduct() {
-		// TODO Auto-generated method stub
-		return null;
+	public int getSalesOrderID() {
+		return salesOrderID;
 	}
 
-	public String getTotalAmount() {
-		// TODO Auto-generated method stub
-		return null;
+	public void setSalesOrderID(int salesOrderID) {
+		this.salesOrderID = salesOrderID;
 	}
 
 }

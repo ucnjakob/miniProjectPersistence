@@ -1,8 +1,8 @@
 package database;
 
-public class DBCon implements DBCIF{
+public class StaffDB implements SDBIF {
 
-	public DBCon() {
+	public StaffDB() {
 		// TODO Auto-generated constructor stub
 	}
 

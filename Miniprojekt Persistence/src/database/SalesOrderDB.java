@@ -1,8 +1,8 @@
 package database;
 
-public class SalesOrderDB implements ODBIF{
+public class SalesOrderDB implements SODBIF{
 
-	public OrderDB() {
+	public SalesOrderDB() {
 		// TODO Auto-generated constructor stub
 	}
 
