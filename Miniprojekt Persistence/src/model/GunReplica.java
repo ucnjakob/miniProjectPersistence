@@ -1,13 +1,17 @@
 package model;
 
-public class GunReplica extends Product{
-	
-	String material;
-	int calibre;
-	
-	public GunReplica(int i, int j, int k, String string, int l, int m, String string2, String string3, String string4, String string5, int n) {
-		// TODO Auto-generated constructor stub
-	}
+public class GunReplica extends Product {
+    private String calibre;
+    private String material;
+
+    public GunReplica(int purchasePrice, int salesPrice, int rentPrice, String countryOfOrigin, int minStock, String calibre, String material, int supplierID) {
+        super(); 
+        this.calibre = calibre;
+        this.material = material;
+        
+    }
+    
+
 
 	public String getMaterial() {
 		return material;
@@ -17,11 +21,11 @@ public class GunReplica extends Product{
 		this.material = material;
 	}
 
-	public int getCalibre() {
+	public String getCalibre() {
 		return calibre;
 	}
 
-	public void setCalibre(int calibre) {
+	public void setCalibre(String calibre) {
 		this.calibre = calibre;
 	}
 	

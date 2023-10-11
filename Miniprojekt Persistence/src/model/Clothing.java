@@ -1,15 +1,15 @@
 package model;
 
-public class Clothing extends Product{
-	
-	int size;
-	String colour;
+public class Clothing extends Product {
+    private int size;
+    private String colour;
 
-	public Clothing(int size, int i, int j, String colour, int k, int l, String string, String string2, String string3, String string4, int m) {
-		super();
-		this.size = size;
-		this.colour = colour;
-	}
+    public Clothing(int purchasePrice, int salesPrice, int rentPrice, String countryOfOrigin, int minStock, int size, String colour, int supplierID) {
+        super(); // Call the default constructor in the super class
+        this.size = size;
+        this.colour = colour;
+        
+    }
 
 	public int getSize() {
 		return size;
