@@ -3,8 +3,8 @@ package model;
 public class Warehouse {
 	String wName;
 	
-	public Warehouse() {
-		// TODO Auto-generated constructor stub
+	public Warehouse(String wareHouse) {
+		this.wName = wareHouse;
 	}
 
 	public String getwName() {
