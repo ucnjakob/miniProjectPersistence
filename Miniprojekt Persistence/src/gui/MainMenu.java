@@ -117,7 +117,7 @@ public class MainMenu extends JFrame {
 	}
 
 	public void OrderMenu() {
-		Order order = new Order();
+		OrderGUI order = new OrderGUI();
 		order.setVisible(true);
 	}
 

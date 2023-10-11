@@ -21,7 +21,7 @@ import java.awt.event.ActionListener;
 import java.util.List;
 import java.awt.event.ActionEvent;
 
-public class Order extends JDialog {
+public class OrderGUI extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JTextField txtVareNUmmer;
@@ -36,7 +36,7 @@ public class Order extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			Order dialog = new Order();
+			OrderGUI dialog = new OrderGUI();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -47,7 +47,7 @@ public class Order extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public Order() {
+	public OrderGUI() {
 		setModal(true);
 		setBounds(100, 100, 729, 557);
 		getContentPane().setLayout(new BorderLayout());
