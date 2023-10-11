@@ -9,9 +9,21 @@ public class Product {
 	String countryOfOrigin;
 	int minStock;
 	int supplierID;
+	String pType;
 	
 	public Product() {
 		// TODO Auto-generated constructor stub
+	}
+
+	public Product(String pName, int purchasePrice, int salesPrice, int rentPrice, String countryOfOrigin, int minStock, int supplierID) {
+		super();
+		this.pName = pName;
+		this.purchasePrice = purchasePrice;
+		this.salesPrice = salesPrice;
+		this.rentPrice = rentPrice;
+		this.countryOfOrigin = countryOfOrigin;
+		this.minStock = minStock;
+		this.supplierID = supplierID;
 	}
 
 	public String getpName() {
