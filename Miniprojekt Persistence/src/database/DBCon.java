@@ -15,7 +15,15 @@ public class DBCon implements DBCIF
     private static Connection con;
     // an instance of the class is generated
     private static DBCon  instance = null;
-
+    
+    public static void main(String [] args) {
+    	try {
+    	DBCon dbcon = new DBCon();
+    	}
+    	catch(Exception e){
+    		e.printStackTrace();
+    	}
+    }
     // the constructor is private to ensure that only one object of this class is created
     private DBCon()
     {
