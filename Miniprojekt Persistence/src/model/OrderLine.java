@@ -1,6 +1,6 @@
 package model;
 
-public class Orderline {
+public class OrderLine {
 	
 	Product product;
 	int qty;
@@ -8,7 +8,7 @@ public class Orderline {
 	String productName;
 	int salesOrderID;
 
-	public Orderline() {
+	public OrderLine() {
 		// TODO Auto-generated constructor stub
 	}
 

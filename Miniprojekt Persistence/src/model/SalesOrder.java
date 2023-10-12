@@ -1,4 +1,5 @@
 package model;
+import java.util.ArrayList;
 
 public class SalesOrder {
 	String orderDate;
@@ -8,11 +9,22 @@ public class SalesOrder {
 	String staffLogInID;
 	int customerPhoneNo;
 	int invoiceID;
+	ArrayList<OrderLine> orderlines;
 	
-	public SalesOrder() {
-		// TODO Auto-generated constructor stub
+	
+	public SalesOrder(String orderDate, String deliveryStatus, boolean isRentalProduct, int ID, String staffLogInID, int customerPhoneNo, int invoiceID) {
+		
 	}
 
+	public addOrderline() 
+	{
+		for(OrderLine ol: orderlines)
+		{
+			ol.getProduct();
+			ol.getQty();
+		}
+	}
+	
 	public String getOrderDate() {
 		return orderDate;
 	}

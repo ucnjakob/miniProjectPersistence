@@ -18,7 +18,7 @@ import model.*;
  */
 public class OrderLineTableModel extends AbstractTableModel {
 	
-	private List<Orderline> orderLines;
+	private List<OrderLine> orderLines;
 	
 	
 	public static final String[] COL_NAMES = 
@@ -30,7 +30,7 @@ public class OrderLineTableModel extends AbstractTableModel {
 		this(new ArrayList<>());
 	}
 	
-	public OrderLineTableModel(List<Orderline> orderLines)
+	public OrderLineTableModel(List<OrderLine> orderLines)
 	{
 		super();
 		if(orderLines != null)
@@ -64,7 +64,7 @@ public class OrderLineTableModel extends AbstractTableModel {
 
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
-		Orderline ol = orderLines.get(rowIndex);
+		OrderLine ol = orderLines.get(rowIndex);
 		String res = "";
 		switch(columnIndex)
 		{
