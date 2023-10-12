@@ -6,7 +6,7 @@ public class OrderLine {
 	int qty;
 	int priceSoldAt;
 	String productName;
-	int salesOrderID;
+	SalesOrder order;
 
 	public OrderLine() {
 		// TODO Auto-generated constructor stub
@@ -44,12 +44,11 @@ public class OrderLine {
 		this.productName = productName;
 	}
 
-	public int getSalesOrderID() {
-		return salesOrderID;
+	public SalesOrder getSalesOrderID() {
+		return order;
 	}
 
-	public void setSalesOrderID(int salesOrderID) {
-		this.salesOrderID = salesOrderID;
-	}
+
+	
 
 }

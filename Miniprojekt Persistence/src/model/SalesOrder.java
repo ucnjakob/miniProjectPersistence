@@ -1,24 +1,27 @@
 package model;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class SalesOrder {
 	String orderDate;
 	String deliveryStatus;
 	boolean isRentalProduct;
 	int ID;
-	String staffLogInID;
-	int customerPhoneNo;
+	Staff staff;
+	Customer customer;
 	int invoiceID;
-	ArrayList<OrderLine> orderlines;
+	ArrayList<OrderLine> orderLines;
 	
 	
-	public SalesOrder(String orderDate, String deliveryStatus, boolean isRentalProduct, int ID, String staffLogInID, int customerPhoneNo, int invoiceID) {
+	public SalesOrder(String orderDate, String deliveryStatus, boolean isRentalProduct, int ID, Staff staff, Customer customer, int invoiceID)
+	{
+		
 		
 	}
 
-	public addOrderline() 
+	public void addOrderline() 
 	{
-		for(OrderLine ol: orderlines)
+		for(OrderLine ol: orderLines)
 		{
 			ol.getProduct();
 			ol.getQty();
@@ -57,21 +60,6 @@ public class SalesOrder {
 		ID = iD;
 	}
 
-	public String getStaffLogInID() {
-		return staffLogInID;
-	}
-
-	public void setStaffLogInID(String staffLogInID) {
-		this.staffLogInID = staffLogInID;
-	}
-
-	public int getCustomerPhoneNo() {
-		return customerPhoneNo;
-	}
-
-	public void setCustomerPhoneNo(int customerPhoneNo) {
-		this.customerPhoneNo = customerPhoneNo;
-	}
 
 	public int getInvoiceID() {
 		return invoiceID;
@@ -79,6 +67,26 @@ public class SalesOrder {
 
 	public void setInvoiceID(int invoiceID) {
 		this.invoiceID = invoiceID;
+	}
+	
+	public boolean getIsRentalProduct()
+	{
+		return isRentalProduct;
+	}
+	
+	public Staff getStaff()
+	{
+		return staff;
+	}
+	
+	public Customer getCustomer()
+	{
+		return customer;
+	}
+	
+	public ArrayList<OrderLine> getOrderLines()
+	{
+		return orderLines;
 	}
 
 }

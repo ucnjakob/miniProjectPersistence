@@ -19,5 +19,10 @@ String logInID;
 		this.isAdmin = isAdmin;
 		this.logInID = logInID;
 	}
+	
+	public String getLoginId()
+	{
+		return logInID;
+	}
 
 }
