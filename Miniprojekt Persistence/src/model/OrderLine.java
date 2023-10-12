@@ -5,11 +5,12 @@ public class OrderLine {
 	Product product;
 	int qty;
 	int priceSoldAt;
-	String productName;
 	SalesOrder order;
 
-	public OrderLine() {
-		// TODO Auto-generated constructor stub
+	public OrderLine(Product product, int qty) 
+	{
+		this.product = product;
+		this.qty = qty;
 	}
 
 	public Product getProduct() {
@@ -36,13 +37,6 @@ public class OrderLine {
 		this.priceSoldAt = priceSoldAt;
 	}
 
-	public String getProductName() {
-		return productName;
-	}
-
-	public void setProductName(String productName) {
-		this.productName = productName;
-	}
 
 	public SalesOrder getSalesOrderID() {
 		return order;

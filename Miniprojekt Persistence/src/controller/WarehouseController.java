@@ -1,5 +1,6 @@
 package controller;
 import database.*;
+import model.Product;
 import model.Warehouse;
 
 public class WarehouseController implements WCIF{
@@ -11,5 +12,11 @@ public class WarehouseController implements WCIF{
     public Warehouse findWarehouse(String wName) {
         return wdbif.findWarehouse(wName);
     }
+    
+    public boolean checkStock(Product product, String warehouseName, int qty)
+    {
+    	return wdbif.checkStock(product, warehouseName, qty);
+    }
+
 	
 }

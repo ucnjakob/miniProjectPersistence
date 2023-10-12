@@ -19,13 +19,9 @@ public class SalesOrder {
 		
 	}
 
-	public void addOrderline() 
+	public void addOrderline(OrderLine ol) 
 	{
-		for(OrderLine ol: orderLines)
-		{
-			ol.getProduct();
-			ol.getQty();
-		}
+		orderLines.add(ol);
 	}
 	
 	public String getOrderDate() {

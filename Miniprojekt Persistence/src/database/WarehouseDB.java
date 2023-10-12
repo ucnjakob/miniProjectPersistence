@@ -1,6 +1,7 @@
 package database;
 
 import java.sql.Connection;
+import model.*;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -28,7 +29,7 @@ public class WarehouseDB implements WDBIF{
 		try {
 			PreparedStatement stmt = dbCon.prepareStatement(query);
 			stmt.setString(1, wName);
-			ResultSet rs = stmt.executeQuery(query);
+			ResultSet rs = stmt.executeQuery();
 			
 			//set varibles to found vlaues
 			rs.next();
@@ -39,10 +40,36 @@ public class WarehouseDB implements WDBIF{
 		
 		catch (SQLException e) 
 		{
-			
 			e.printStackTrace();
 		}
 		return foundWarehouse;
+	}
+	
+	public boolean checkStock(Product product, String warehouseName, int qty)
+	{
+		//initiate variables
+		boolean isOnStock = false;
+		dbCon = DBCon.getInstance().getDBcon();
+		int foundStock;
+		String wName = warehouseName;
+		String pName = product.getpName();
+		
+		//statement
+		String query = ("select * from warehouseLine where productname = " +pName + "and warehousename = " +wName);
+		try {
+			PreparedStatement stmt2 = dbCon.prepareStatement(query);
+			ResultSet rs = stmt2.executeQuery();
+			rs.next();
+			foundStock = rs.getInt("qty");
+			if(foundStock >= qty)
+			{
+				isOnStock = true;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return isOnStock;
 	}
 
 }

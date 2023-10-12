@@ -15,7 +15,7 @@ public class OrderController implements OCIF{
 	PCIF pcif = new ProductController();
 	WCIF wcif = new WarehouseController();
 	SODBIF sodbif = new SalesOrderDB();
-	private SalesOrder CurrentOrder;
+	private SalesOrder currentOrder;
 	
 	public OrderController() {
 		// TODO Auto-generated constructor stub
@@ -46,16 +46,16 @@ public class OrderController implements OCIF{
 	}
 
 	@Override
-	public Product findProduct(String name) {
-		Product foundProduct = pcif.findSProduct(name);
-		return foundProduct;
-	}
+	public void findAndAddProduct(String pName, int qty, String wName) 
+	{
+		Product foundProduct = pcif.findSProduct(pName);
+		if(wcif.checkStock(foundProduct, wName, qty))
+			{
+				OrderLine ol = new OrderLine(foundProduct, qty);
+				currentOrder.addOrderline(ol);
+			}
+	} 
 
-	@Override
-	public Product addProduct(Product product) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public void createOrder() {

@@ -7,8 +7,7 @@ public interface OCIF {
 	public Staff findStaff(String name);
 	public Customer findCustomer(int name);
 	public Customer addCustomer(Customer customer);
-	public Product findProduct(String name);
-	public Product addProduct(Product product);
+	public void findAndAddProduct(String pName, int qty, String wName);
 	public void createOrder();
 	public void finalizeOrder();
 }
