@@ -1,18 +1,27 @@
 package model;
 
 public class Product {
-	
-	String pName;
-	int purchasePrice;
-	int salesPrice;
-	int rentPrice;
-	String countryOfOrigin;
-	int minStock;
-	int supplierID;
-	
-	public Product() {
-		// TODO Auto-generated constructor stub
-	}
+    protected String pName;
+    protected int purchasePrice;
+    protected int salesPrice;
+    protected int rentPrice;
+    protected String countryOfOrigin;
+    protected int minStock;
+    protected int supplierID;
+
+    public Product() {
+        // Default constructor
+    }
+
+    public Product(String pName, int purchasePrice, int salesPrice, int rentPrice, String countryOfOrigin, int minStock, int supplierID) {
+        this.pName = pName;
+        this.purchasePrice = purchasePrice;
+        this.salesPrice = salesPrice;
+        this.rentPrice = rentPrice;
+        this.countryOfOrigin = countryOfOrigin;
+        this.minStock = minStock;
+        this.supplierID = supplierID;
+    }
 
 	public String getpName() {
 		return pName;
