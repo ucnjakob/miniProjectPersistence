@@ -48,6 +48,7 @@ public class OrderGUI extends JDialog {
 	 * Create the dialog.
 	 */
 	public OrderGUI() {
+		this.orderController = new OrderController();
 		setModal(true);
 		setBounds(100, 100, 729, 557);
 		getContentPane().setLayout(new BorderLayout());
@@ -195,7 +196,7 @@ public class OrderGUI extends JDialog {
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
-			//UpdateOrder();
+			UpdateOrder();
 		}
 	}
 
@@ -206,7 +207,7 @@ public class OrderGUI extends JDialog {
 	
 	public void UpdateOrder()
 	{
-		List<Orderline> ols = orderController.getOrderLines();
+		List<OrderLine> ols = orderController.getOrderLines();
 		otm = new OrderLineTableModel(ols);
 		this.tblorder.setModel(otm);
 	}

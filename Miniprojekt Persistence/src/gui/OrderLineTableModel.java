@@ -72,10 +72,10 @@ public class OrderLineTableModel extends AbstractTableModel {
 			res = ol.getProductName();
 			break;
 		case 1:
-			res += ol.getQuantity();
+			res += ol.getQty();
 			break;
 		case 2:
-			res += (ol.getProduct().getPrice() + " DKK");
+			res += (ol.getProduct().getSalesPrice() + " DKK");
 			break;
 		case 3:
 			res += (ol.getTotalAmount() + " DKK");

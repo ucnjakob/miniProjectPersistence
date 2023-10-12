@@ -49,6 +49,7 @@ public class Login extends JDialog {
 	 * Create the dialog.
 	 */
 	public Login() {
+		this.OC = new OrderController();
 		setResizable(false);
 		setTitle("Login");
 		setBounds(100, 100, 299, 179);
