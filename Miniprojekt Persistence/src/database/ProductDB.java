@@ -4,9 +4,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import model.Clothing;
-import model.Equipment;
-import model.GunReplica;
 import model.Product;
 
 public class ProductDB implements PDBIF {
@@ -23,51 +20,23 @@ public class ProductDB implements PDBIF {
 
         String query = "SELECT * FROM product WHERE pName = ?";
         
-        try (PreparedStatement stmt = dbCon.prepareStatement(query)) {
+        try {
+        	PreparedStatement stmt = dbCon.prepareStatement(query);
             stmt.setString(1, pName);
             ResultSet rs = stmt.executeQuery();
 
-            if (rs.next()) {
-                String pType = rs.getString("pType");
+            rs.next();
+            String foundPname = rs.getString("pName");
+            int foundPurchasePrice = rs.getInt("purchasePrice");
+            int foundSalesPrice = rs.getInt("salesPrice");
+            int foundRentPrice = rs.getInt("rentPrice");
+            String foundCountryOfOrigin = rs.getString("countryOfOrigin");
+            int foundMinStock = rs.getInt("minStock");
+            int foundSupplierID = rs.getInt("supplierId");
                 
-                if ("pTypeA".equals(pType)) {
-                    Clothing clothing = new Clothing(
-                    	rs.getInt("purchasePrice"),
-                        rs.getInt("salesPrice"),
-                        rs.getInt("rentPrice"),
-                        rs.getString("countryOfOrigin"),
-                        rs.getInt("minStock"),
-                        rs.getInt("size"),
-                        rs.getString("colour"),
-                        rs.getInt("supplierID")
-                    );
-                    foundProduct = clothing;
-                } else if ("pTypeB".equals(pType)) {
-                    Equipment equipment = new Equipment(
-                        rs.getInt("purchasePrice"),
-                        rs.getInt("salesPrice"),
-                        rs.getInt("rentPrice"),
-                        rs.getString("countryOfOrigin"),
-                        rs.getInt("minStock"),
-                        rs.getString("equipmentType"),
-                        rs.getString("equipmentDescription"),
-                        rs.getInt("supplierID")
-                    );
-                    foundProduct = equipment;
-                } else if ("pTypeC".equals(pType)) {
-                    GunReplica gunReplica = new GunReplica(
-                        rs.getInt("purchasePrice"),
-                        rs.getInt("salesPrice"),
-                        rs.getInt("rentPrice"),
-                        rs.getString("countryOfOrigin"),
-                        rs.getInt("minStock"),
-                        rs.getString("calibre"),
-                        rs.getString("material"),
-                        rs.getInt("supplierID")
-                    );
-                    foundProduct = gunReplica;
-                }
-            }
+            foundProduct = new Product(foundPname, foundPurchasePrice, foundSalesPrice, foundRentPrice, foundCountryOfOrigin, foundMinStock, foundSupplierID);
+              
+            
         } catch (SQLException e) {
             e.printStackTrace();
         }

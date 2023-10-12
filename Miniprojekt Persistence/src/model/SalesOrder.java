@@ -15,7 +15,7 @@ public class SalesOrder {
 	
 	public SalesOrder()
 	{
-		
+		orderLines = new ArrayList<>();
 		
 	}
 

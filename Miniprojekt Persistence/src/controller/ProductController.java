@@ -9,8 +9,8 @@ public class ProductController implements PCIF{
 		// TODO Auto-generated constructor stub
 	}
 
-    public Product findSProduct(String fName) {
-        return pdbif.findProduct(fName);
+    public Product findSProduct(String pName) {
+        return pdbif.findProduct(pName);
     }
 }
 

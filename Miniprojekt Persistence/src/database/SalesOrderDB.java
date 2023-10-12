@@ -56,7 +56,7 @@ public class SalesOrderDB implements SODBIF{
 			//Insert orderlines
 		
 			//initialise variables
-			ArrayList<OrderLine> orderLines= order.getOrderLines();
+			ArrayList<OrderLine> orderLines = order.getOrderLines();
 			
 			//Statement
 			PreparedStatement stmt3 = dbCon.prepareStatement("INSERT INTO OrderLine(OrderID, productName, quantity, priceSoldAt) VALUES (?, ?, ?; ?)");

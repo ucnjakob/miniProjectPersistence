@@ -55,9 +55,11 @@ public class WarehouseDB implements WDBIF{
 		String pName = product.getpName();
 		
 		//statement
-		String query = ("select * from warehouseLine where productname = " +pName + "and warehousename = " +wName);
+		String query = ("select * from warehouseLine where productname = ? and warehouseName = ?");
 		try {
 			PreparedStatement stmt2 = dbCon.prepareStatement(query);
+			stmt2.setString(1, pName);
+			stmt2.setString(2, wName);
 			ResultSet rs = stmt2.executeQuery();
 			rs.next();
 			foundStock = rs.getInt("qty");

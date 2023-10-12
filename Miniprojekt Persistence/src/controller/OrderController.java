@@ -49,10 +49,12 @@ public class OrderController implements OCIF{
 	public void findAndAddProduct(String pName, int qty, String wName) 
 	{
 		Product foundProduct = pcif.findSProduct(pName);
+		System.out.println(foundProduct.getpName());
 		if(wcif.checkStock(foundProduct, wName, qty))
 			{
 				OrderLine ol = new OrderLine(foundProduct, qty);
 				currentOrder.addOrderline(ol);
+				System.out.println(ol.getQty());
 			}
 	} 
 
