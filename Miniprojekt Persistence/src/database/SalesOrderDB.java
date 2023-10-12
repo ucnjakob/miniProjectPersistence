@@ -46,7 +46,7 @@ public class SalesOrderDB implements SODBIF{
 			
 			//find order ID
 			int orderId;
-			PreparedStatement stmt2 = dbCon.prepareStatement("select max(id) from salesOrder where loginId = ?");
+			PreparedStatement stmt2 = dbCon.prepareStatement("select max(id) as id from salesOrder where StaffloginId = ?");
 			stmt2.setString(1, staffLoginId);
 			ResultSet rs = stmt2.executeQuery();
 			rs.next();
@@ -59,7 +59,7 @@ public class SalesOrderDB implements SODBIF{
 			ArrayList<OrderLine> orderLines = order.getOrderLines();
 			
 			//Statement
-			PreparedStatement stmt3 = dbCon.prepareStatement("INSERT INTO OrderLine(OrderID, productName, quantity, priceSoldAt) VALUES (?, ?, ?; ?)");
+			PreparedStatement stmt3 = dbCon.prepareStatement("INSERT INTO OrderLine(salesOrderID, productName, qty, priceSoldAt) VALUES (?, ?, ?, ?)");
 			stmt3.setInt(1, orderId);
 			
 			for(OrderLine ol : orderLines)

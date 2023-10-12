@@ -16,16 +16,15 @@ public class OrderController implements OCIF{
 	WCIF wcif = new WarehouseController();
 	SODBIF sodbif = new SalesOrderDB();
 	private SalesOrder currentOrder;
+	private Staff staff;
+	private Customer customer;
 	
 	public OrderController() {
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
-	public Staff addStaff(Staff Staff) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
+	
 
 	@Override
 	public Staff findStaff(String name) {
@@ -40,9 +39,8 @@ public class OrderController implements OCIF{
 	}
 
 	@Override
-	public Customer addCustomer(Customer customer) {
-		// TODO Auto-generated method stub
-		return null;
+	public void addCustomer(Customer customer) {
+		currentOrder.setCustomer(customer);
 	}
 
 	@Override
@@ -61,19 +59,32 @@ public class OrderController implements OCIF{
 
 	@Override
 	public void createOrder() {
-		currentOrder = new SalesOrder();
+		currentOrder = new SalesOrder(staff);
 		
 	}
 
 	@Override
-	public void finalizeOrder() {
-		// TODO Auto-generated method stub
+	public void finalizeOrder() 
+	{
+		sodbif.insertOrder(currentOrder);
 		
 	}
 
 	public List<OrderLine> getOrderLines() {
 		return currentOrder.getOrderLines();
 	}
+	
+	public void setStaff(Staff staff)
+	{
+		this.staff = staff;
+	}
+	
+	public void setCustomer(Customer customer)
+	{
+		this.customer = customer;
+	}
+	
+	
 
 	
 

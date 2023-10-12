@@ -5,10 +5,12 @@ import model.*;
 
 public interface OCIF {
 
-	public Staff addStaff(Staff Staff);
+	
+	public void setCustomer(Customer customer);
+	public void setStaff(Staff staff);
 	public Staff findStaff(String name);
 	public Customer findCustomer(int name);
-	public Customer addCustomer(Customer customer);
+	public void addCustomer(Customer customer);
 	public void findAndAddProduct(String pName, int qty, String wName);
 	public void createOrder();
 	public void finalizeOrder();

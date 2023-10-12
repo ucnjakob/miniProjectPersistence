@@ -59,6 +59,7 @@ public class OrderGUI extends JDialog {
 	public OrderGUI(Staff CurrentStaff) {
 		this.currentStaff = CurrentStaff;
 		this.ocif = new OrderController();
+		ocif.setStaff(CurrentStaff);
 		ocif.createOrder();
 		setModal(true);
 		setBounds(100, 100, 884, 557);
@@ -292,6 +293,7 @@ public class OrderGUI extends JDialog {
 		currentCUstomer = ocif.findCustomer(phone);
 		lblNavn.setText(currentCUstomer.getFname() + " " + currentCUstomer.getLname());
 		lblAdress.setText(currentCUstomer.getCustomerAddress()+ " " + currentCUstomer.getZipcode() + " " + currentCUstomer.getCity());
+		ocif.addCustomer(currentCUstomer);
 		}
 		
 		else
@@ -312,8 +314,10 @@ public class OrderGUI extends JDialog {
 	}
 
 	public void okClicked() {
+		ocif.finalizeOrder();
 		this.dispose();
 		this.setVisible(false);
+		
 	}
 	
 	private void displayOrder()

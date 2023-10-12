@@ -13,9 +13,10 @@ public class SalesOrder {
 	ArrayList<OrderLine> orderLines;
 	
 	
-	public SalesOrder()
+	public SalesOrder(Staff staff)
 	{
 		orderLines = new ArrayList<>();
+		this.staff = staff;
 		
 	}
 
@@ -78,6 +79,11 @@ public class SalesOrder {
 	public Customer getCustomer()
 	{
 		return customer;
+	}
+	
+	public void setCustomer(Customer customer)
+	{
+		this.customer = customer;
 	}
 	
 	public ArrayList<OrderLine> getOrderLines()
