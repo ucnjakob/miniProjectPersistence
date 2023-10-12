@@ -52,4 +52,9 @@ public class OrderLine {
 		this.salesOrderID = salesOrderID;
 	}
 
+	public String getTotalAmount() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
