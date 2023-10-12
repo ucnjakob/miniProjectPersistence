@@ -267,14 +267,22 @@ public class OrderGUI extends JDialog {
 			displayOrder();
 			update();
 		}
+		
 	}
 
 	private void Search() {
+		
+		if (isParsable(txtPhone.getText())) {
 		int phone = Integer.parseInt(txtPhone.getText());
 		currentCUstomer = orderController.findCustomer(phone);
 		lblNavn.setText(currentCUstomer.getFname() + " " + currentCUstomer.getLname());
 		lblAdress.setText(currentCUstomer.getCustomerAddress()+ " " + currentCUstomer.getZipcode() + " " + currentCUstomer.getCity());
+		}
 		
+		else
+		{
+			lblNavn.setText("intast gyldigt Tlf nummer");
+		}
 	}
 
 	protected void exit() {
@@ -300,4 +308,17 @@ public class OrderGUI extends JDialog {
 		this.tblOrder.setModel(otm);
 		
 	}
+	public boolean isParsable(String input)
+    {
+    	try 
+    	{
+    		Integer.parseInt(input);
+    		return true;
+    	}
+    	catch (final NumberFormatException e)
+    	{
+    		return false;
+    	}
+
+}
 }
