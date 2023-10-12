@@ -6,6 +6,8 @@ import java.sql.SQLException;
 
 import model.Staff;
 public class StaffDB implements SDBIF {
+	
+Connection dbCon;
 
 	public StaffDB() {
 		// TODO Auto-generated constructor stub
@@ -15,7 +17,7 @@ public class StaffDB implements SDBIF {
 //@Override
 	public Staff findStaff(String LogInId)
 	{
-		Connection dbCon = DBCon.getInstance().getDBcon();
+		dbCon = DBCon.getInstance().getDBcon();
 
 		Staff foundStaff = null;
 		String foundFname;

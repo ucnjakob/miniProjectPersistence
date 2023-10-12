@@ -6,6 +6,9 @@ import model.*;
 
 public class SalesOrderDB implements SODBIF{
 
+	
+	Connection dbCon;
+	
 	public SalesOrderDB() {
 		// TODO Auto-generated constructor stub
 	}
@@ -28,7 +31,7 @@ public class SalesOrderDB implements SODBIF{
 		}
 		String staffLoginId = order.getStaff().getLoginId();
 		int customerPhoneNo = order.getCustomer().getPhoneNo();
-		Connection dbCon = DBCon.getInstance().getDBcon();
+		dbCon = DBCon.getInstance().getDBcon();
 		
 		//Statement
 		try {

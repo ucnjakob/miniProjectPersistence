@@ -9,6 +9,8 @@ import model.Warehouse;
 
 public class WarehouseDB implements WDBIF{
 
+	Connection dbCon;
+	
 	private  Warehouse foundWarehouse = null;
 	private String wareHouse;
 	
@@ -18,7 +20,7 @@ public class WarehouseDB implements WDBIF{
 
 	@Override
 	public Warehouse findWarehouse(String wName) {
-		Connection dbCon = DBCon.getInstance().getDBcon();
+		dbCon = DBCon.getInstance().getDBcon();
 
 
 		

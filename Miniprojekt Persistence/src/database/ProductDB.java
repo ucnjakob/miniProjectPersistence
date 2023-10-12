@@ -10,13 +10,15 @@ import model.GunReplica;
 import model.Product;
 
 public class ProductDB implements PDBIF {
-
+	
+	Connection dbCon;
+	
     public ProductDB() {
        
     }
 
     public Product findProduct(String pName) {
-        Connection dbCon = DBCon.getInstance().getDBcon();
+        dbCon = DBCon.getInstance().getDBcon();
         Product foundProduct = null;
 
         String query = "SELECT * FROM product WHERE pName = ?";

@@ -5,7 +5,7 @@ import java.sql.*;
 
 public class CustomerDB implements CDBIF{
 	
-	
+	Connection dbCon;
 	public CustomerDB() 
 	{
 		
@@ -14,7 +14,7 @@ public class CustomerDB implements CDBIF{
 	//@Override
 	public Customer findCustomer(int phoneNo) 
 	{
-		Connection dbCon = DBCon.getInstance().getDBcon();
+		dbCon = DBCon.getInstance().getDBcon();
 
 		Customer foundCustomer = null;
 		String foundFname;
