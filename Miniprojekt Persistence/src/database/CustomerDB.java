@@ -21,7 +21,7 @@ public class CustomerDB implements CDBIF{
 		String foundLname;
 		String foundCustomerAddress;
 		String foundZipcode;
-		String foundCity;
+		String foundCity;	
 		int foundPhoneNo;
 		boolean foundIsClub;
 		int tempIsClub;
