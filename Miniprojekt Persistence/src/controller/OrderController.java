@@ -59,7 +59,7 @@ public class OrderController implements OCIF{
 
 	@Override
 	public void createOrder() {
-		
+		currentOrder = new SalesOrder();
 		
 	}
 
@@ -70,8 +70,7 @@ public class OrderController implements OCIF{
 	}
 
 	public List<OrderLine> getOrderLines() {
-		// TODO Auto-generated method stub
-		return null;
+		return currentOrder.getOrderLines();
 	}
 
 	

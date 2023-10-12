@@ -69,7 +69,7 @@ public class OrderLineTableModel extends AbstractTableModel {
 		switch(columnIndex)
 		{
 		case 0: 
-			res = ol.getProductName();
+			res = ol.getPname();
 			break;
 		case 1:
 			res += ol.getQty();
@@ -81,7 +81,7 @@ public class OrderLineTableModel extends AbstractTableModel {
 			res += (ol.getTotalAmount() + " DKK");
 			break;
 		case 4:
-			res += (ol.getProductName());
+			res += (ol.getProduct());
 		default:
 			res = "Der skete en fejl!";
 			

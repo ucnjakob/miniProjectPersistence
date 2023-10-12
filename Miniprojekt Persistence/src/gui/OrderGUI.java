@@ -30,15 +30,15 @@ public class OrderGUI extends JDialog {
 	private JTextField txtAntal;
 	private JTextField txtVareHus;
 	private OrderLineTableModel otm;
-	private OrderController orderController;
+	private OCIF ocif;
 	private Staff currentStaff;
 	private JLabel lblUser;
-	private SalesOrder currentOrder;
 	private JTable tblOrder;
 	private JTextField txtPhone;
 	private Customer currentCUstomer;
 	private JLabel lblNavn;
 	private JLabel lblAdress;
+	private List<OrderLine> ols;
 
 	/**
 	 * Launch the application.
@@ -58,8 +58,8 @@ public class OrderGUI extends JDialog {
 	 */
 	public OrderGUI(Staff CurrentStaff) {
 		this.currentStaff = CurrentStaff;
-		this.orderController = new OrderController();
-		orderController.createOrder();
+		this.ocif = new OrderController();
+		ocif.createOrder();
 		setModal(true);
 		setBounds(100, 100, 884, 557);
 		getContentPane().setLayout(new BorderLayout());
@@ -192,6 +192,13 @@ public class OrderGUI extends JDialog {
 			panel.add(lblAdress, gbc_lblAdress);
 			
 			JButton btnTilføj = new JButton("Tilføj");
+			btnTilføj.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					addProduct();
+					displayOrder();
+					
+				}
+			});
 			GridBagConstraints gbc_btnTilføj = new GridBagConstraints();
 			gbc_btnTilføj.anchor = GridBagConstraints.NORTHWEST;
 			gbc_btnTilføj.insets = new Insets(0, 0, 5, 5);
@@ -270,11 +277,19 @@ public class OrderGUI extends JDialog {
 		
 	}
 
+	private void addProduct() {
+		String pName = txtVareNUmmer.getText();
+		int qty = Integer.parseInt(txtAntal.getText());
+		ocif.findAndAddProduct(pName, qty, txtVareHus.getText());
+		
+		
+	}
+
 	private void Search() {
 		
 		if (isParsable(txtPhone.getText())) {
 		int phone = Integer.parseInt(txtPhone.getText());
-		currentCUstomer = orderController.findCustomer(phone);
+		currentCUstomer = ocif.findCustomer(phone);
 		lblNavn.setText(currentCUstomer.getFname() + " " + currentCUstomer.getLname());
 		lblAdress.setText(currentCUstomer.getCustomerAddress()+ " " + currentCUstomer.getZipcode() + " " + currentCUstomer.getCity());
 		}
@@ -303,7 +318,7 @@ public class OrderGUI extends JDialog {
 	
 	private void displayOrder()
 	{
-		List<OrderLine> ols = orderController.getOrderLines();
+		ols = ocif.getOrderLines();
 		otm = new OrderLineTableModel(ols);
 		this.tblOrder.setModel(otm);
 		

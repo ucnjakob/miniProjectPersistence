@@ -13,7 +13,7 @@ public class SalesOrder {
 	ArrayList<OrderLine> orderLines;
 	
 	
-	public SalesOrder(String orderDate, String deliveryStatus, boolean isRentalProduct, int ID, Staff staff, Customer customer, int invoiceID)
+	public SalesOrder()
 	{
 		
 		

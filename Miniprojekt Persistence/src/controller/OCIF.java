@@ -1,4 +1,6 @@
 package controller;
+import java.util.List;
+
 import model.*;
 
 public interface OCIF {
@@ -10,4 +12,5 @@ public interface OCIF {
 	public void findAndAddProduct(String pName, int qty, String wName);
 	public void createOrder();
 	public void finalizeOrder();
+	public List<OrderLine> getOrderLines();
 }

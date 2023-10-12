@@ -49,5 +49,10 @@ public class OrderLine {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	public String getPname()
+	{
+		return product.getpName();
+	}
 
 }
