@@ -1,7 +1,10 @@
 package controller;
 
-public interface CCIF {
+import model.Customer;
 
+public interface CCIF {
+	
+	public Customer findCustomer(int phoneNo);
 }
 
 

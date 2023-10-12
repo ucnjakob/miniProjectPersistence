@@ -17,7 +17,7 @@ public class WarehouseDB implements WDBIF{
 	}
 
 	@Override
-	public Warehouse foudWarehouseByName(String wName) {
+	public Warehouse findWarehouse(String wName) {
 		Connection dbCon = DBCon.getInstance().getDBcon();
 
 

@@ -1,7 +1,6 @@
 package controller;
 import database.*;
 import model.Product;
-import model.Staff;
 
 public class ProductController implements PCIF{
 	ProductDB pdbif = new ProductDB();

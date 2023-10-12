@@ -1,7 +1,6 @@
 package controller;
 import database.*;
 import model.Customer;
-import model.Staff;
 
 public class CustomerController implements CCIF{
 	
@@ -15,4 +14,4 @@ public class CustomerController implements CCIF{
     }
 }
 
-}
+
