@@ -59,7 +59,7 @@ public class OrderController implements OCIF{
 
 	@Override
 	public void createOrder() {
-		CurrentOrder = new SalesOrder(null, null, false, 0, null, 0, 0);
+		
 		
 	}
 

@@ -30,13 +30,15 @@ public class OrderGUI extends JDialog {
 	private JTable tblorder;
 	private OrderLineTableModel otm;
 	private OrderController orderController;
+	private Staff currentStaff;
+	private JLabel lblUser;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		try {
-			OrderGUI dialog = new OrderGUI();
+			OrderGUI dialog = new OrderGUI(null);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -47,7 +49,8 @@ public class OrderGUI extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public OrderGUI() {
+	public OrderGUI(Staff CurrentStaff) {
+		this.currentStaff = CurrentStaff;
 		this.orderController = new OrderController();
 		setModal(true);
 		setBounds(100, 100, 729, 557);
@@ -63,7 +66,7 @@ public class OrderGUI extends JDialog {
 				JPanel panel_1 = new JPanel();
 				panel.add(panel_1, BorderLayout.EAST);
 				{
-					JLabel lblUser = new JLabel("user");
+					lblUser = new JLabel("user");
 					panel_1.add(lblUser);
 				}
 			}
@@ -197,7 +200,13 @@ public class OrderGUI extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 			UpdateOrder();
+			update();
 		}
+	}
+
+	private void update() {
+		lblUser.setText(currentStaff.getFname() + " " + currentStaff.getLname());
+		
 	}
 
 	public void okClicked() {

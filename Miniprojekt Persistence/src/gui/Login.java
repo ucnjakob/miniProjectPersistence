@@ -152,7 +152,7 @@ public class Login extends JDialog {
 	}
 
 	public void LoginClicked() {
-		MainMenu mainmenu = new MainMenu();
+		MainMenu mainmenu = new MainMenu(CurrentStaff);
 		mainmenu.setVisible(true);
 		this.dispose();
 		this.setVisible(false);

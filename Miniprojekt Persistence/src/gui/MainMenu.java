@@ -5,6 +5,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import model.Staff;
+
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import javax.swing.JLabel;
@@ -21,6 +24,9 @@ import java.awt.event.ActionEvent;
 public class MainMenu extends JFrame {
 
 	private JPanel contentPane;
+	private Staff Currentstaff;
+	private JLabel lblUser;
+	private JButton btnAdmin;
 
 	/**
 	 * Launch the application.
@@ -29,7 +35,7 @@ public class MainMenu extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MainMenu frame = new MainMenu();
+					MainMenu frame = new MainMenu(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -40,8 +46,10 @@ public class MainMenu extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @param currentStaff 
 	 */
-	public MainMenu() {
+	public MainMenu(Staff currentStaff) {
+		this.Currentstaff = currentStaff;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setBounds(100, 100, 908, 876);
@@ -60,7 +68,7 @@ public class MainMenu extends JFrame {
 		flowLayout.setAlignment(FlowLayout.RIGHT);
 		panel.add(panel_1, BorderLayout.NORTH);
 		
-		JLabel lblUser = new JLabel("user");
+		lblUser = new JLabel("user");
 		panel_1.add(lblUser);
 		
 		JButton btnNewButton = new JButton("Logout");
@@ -92,6 +100,7 @@ public class MainMenu extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				OrderMenu();
 			}
+			
 		});
 		GridBagConstraints gbc_btnOrder = new GridBagConstraints();
 		gbc_btnOrder.anchor = GridBagConstraints.NORTHWEST;
@@ -100,12 +109,35 @@ public class MainMenu extends JFrame {
 		gbc_btnOrder.gridy = 0;
 		panel_3.add(btnOrder, gbc_btnOrder);
 		
-		JButton btnNewButton_1 = new JButton("New button");
-		GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
-		gbc_btnNewButton_1.anchor = GridBagConstraints.NORTHWEST;
-		gbc_btnNewButton_1.gridx = 1;
-		gbc_btnNewButton_1.gridy = 1;
-		panel_3.add(btnNewButton_1, gbc_btnNewButton_1);
+		btnAdmin = new JButton("admin button");
+		GridBagConstraints gbc_btnAdmin = new GridBagConstraints();
+		gbc_btnAdmin.anchor = GridBagConstraints.NORTHWEST;
+		gbc_btnAdmin.gridx = 1;
+		gbc_btnAdmin.gridy = 1;
+		panel_3.add(btnAdmin, gbc_btnAdmin);
+		
+		update();
+		isAdmin();
+	}
+	
+
+	private void isAdmin() {
+		if (Currentstaff.isAdmin())
+		{
+			btnAdmin.setVisible(true);
+			btnAdmin.setEnabled(true);
+		}
+		else
+		{
+			btnAdmin.setVisible(false);
+			btnAdmin.setEnabled(false);
+		}
+		
+	}
+
+	private void update() {
+		lblUser.setText(Currentstaff.getFname() + " " + Currentstaff.getLname());
+		
 	}
 
 	public void LogoutClicked() {
@@ -117,7 +149,7 @@ public class MainMenu extends JFrame {
 	}
 
 	public void OrderMenu() {
-		OrderGUI order = new OrderGUI();
+		OrderGUI order = new OrderGUI(Currentstaff);
 		order.setVisible(true);
 	}
 
