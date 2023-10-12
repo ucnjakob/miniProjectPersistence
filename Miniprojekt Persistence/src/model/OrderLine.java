@@ -51,4 +51,9 @@ public class OrderLine {
 
 	
 
+	public String getTotalAmount() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

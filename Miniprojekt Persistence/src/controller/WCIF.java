@@ -1,5 +1,9 @@
 package controller;
 
-public interface WCIF {
+import model.Warehouse;
 
+public interface WCIF {
+	
+	public Warehouse findWarehouse(String wName);
 }
+

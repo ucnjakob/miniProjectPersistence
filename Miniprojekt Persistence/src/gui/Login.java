@@ -1,12 +1,17 @@
 package gui;
 
 import java.awt.BorderLayout;
+
 import java.awt.FlowLayout;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+
+import model.Staff;
+
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
@@ -15,12 +20,17 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import controller.*;
 
 public class Login extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JPasswordField pswPassword;
 	private JTextField txtUsename;
+	private Staff CurrentStaff;
+	private OCIF OC;
+	private JLabel lblError;
+	
 
 	/**
 	 * Launch the application.
@@ -39,6 +49,7 @@ public class Login extends JDialog {
 	 * Create the dialog.
 	 */
 	public Login() {
+		this.OC = new OrderController();
 		setResizable(false);
 		setTitle("Login");
 		setBounds(100, 100, 299, 179);
@@ -72,18 +83,27 @@ public class Login extends JDialog {
 		{
 			JLabel Password = new JLabel("Password");
 			GridBagConstraints gbc_Password = new GridBagConstraints();
-			gbc_Password.insets = new Insets(0, 0, 0, 5);
+			gbc_Password.insets = new Insets(0, 0, 5, 5);
 			gbc_Password.gridx = 0;
-			gbc_Password.gridy = 3;
+			gbc_Password.gridy = 2;
 			contentPanel.add(Password, gbc_Password);
 		}
 		{
 			pswPassword = new JPasswordField();
 			GridBagConstraints gbc_pswPassword = new GridBagConstraints();
+			gbc_pswPassword.insets = new Insets(0, 0, 5, 0);
 			gbc_pswPassword.fill = GridBagConstraints.HORIZONTAL;
 			gbc_pswPassword.gridx = 2;
-			gbc_pswPassword.gridy = 3;
+			gbc_pswPassword.gridy = 2;
 			contentPanel.add(pswPassword, gbc_pswPassword);
+		}
+		{
+			lblError = new JLabel("");
+			GridBagConstraints gbc_lblError = new GridBagConstraints();
+			gbc_lblError.fill = GridBagConstraints.BOTH;
+			gbc_lblError.gridx = 2;
+			gbc_lblError.gridy = 3;
+			contentPanel.add(lblError, gbc_lblError);
 		}
 		{
 			JPanel buttonPane = new JPanel();
@@ -93,7 +113,8 @@ public class Login extends JDialog {
 				JButton okButton = new JButton("OK");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						LoginClicked();
+						checkuser();
+						
 					}
 				});
 				okButton.setActionCommand("OK");
@@ -104,8 +125,30 @@ public class Login extends JDialog {
 				JButton cancelButton = new JButton("Cancel");
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
+			
 			}
 		}
+	}
+
+	private void checkuser() {
+		findStaff();
+		if(CurrentStaff != null && checkPassword())
+		{
+			LoginClicked();
+		}
+		else if(CurrentStaff != null && !checkPassword())
+		{
+			lblError.setText("Forkert adgangskode");
+			pswPassword.setText("");
+		}
+		else
+		{
+			lblError.setText("Bruger ikke fundet");
+			txtUsename.setText("");
+			pswPassword.setText("");
+		}
+		
+		
 	}
 
 	public void LoginClicked() {
@@ -114,6 +157,22 @@ public class Login extends JDialog {
 		this.dispose();
 		this.setVisible(false);
 		
+		
+	}
+	public boolean checkPassword()
+	{
+		boolean success = false;
+		String password = pswPassword.getText();
+		if(password.equals(CurrentStaff.getPw()))
+				{
+					success = true;
+				}
+		return success;
+	}
+	public void findStaff()
+	{
+		String name = txtUsename.getText();
+		this.CurrentStaff = OC.findStaff(name);
 	}
 
 }

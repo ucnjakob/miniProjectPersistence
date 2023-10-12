@@ -30,7 +30,7 @@ public class ProductDB implements PDBIF {
                 
                 if ("pTypeA".equals(pType)) {
                     Clothing clothing = new Clothing(
-                        rs.getInt("purchasePrice"),
+                    	rs.getInt("purchasePrice"),
                         rs.getInt("salesPrice"),
                         rs.getInt("rentPrice"),
                         rs.getString("countryOfOrigin"),

@@ -1,7 +1,11 @@
 package controller;
+import java.util.List;
+
 import database.*;
 import model.Customer;
+import model.OrderLine;
 import model.Product;
+import model.SalesOrder;
 import model.Staff;
 
 public class OrderController implements OCIF{
@@ -11,6 +15,7 @@ public class OrderController implements OCIF{
 	PCIF pcif = new ProductController();
 	WCIF wcif = new WarehouseController();
 	SODBIF sodbif = new SalesOrderDB();
+	private SalesOrder CurrentOrder;
 	
 	public OrderController() {
 		// TODO Auto-generated constructor stub
@@ -24,14 +29,14 @@ public class OrderController implements OCIF{
 
 	@Override
 	public Staff findStaff(String name) {
-		// TODO Auto-generated method stub
-		return null;
+		Staff foundStaff = scif.findStaff(name);
+		return foundStaff;
 	}
 
 	@Override
-	public Customer findCustomer(String name) {
-		// TODO Auto-generated method stub
-		return null;
+	public Customer findCustomer(int name) {
+		Customer foundCustomer = ccif.findCustomer(name);
+		return foundCustomer;
 	}
 
 	@Override
@@ -42,8 +47,8 @@ public class OrderController implements OCIF{
 
 	@Override
 	public Product findProduct(String name) {
-		// TODO Auto-generated method stub
-		return null;
+		Product foundProduct = pcif.findSProduct(name);
+		return foundProduct;
 	}
 
 	@Override
@@ -54,7 +59,7 @@ public class OrderController implements OCIF{
 
 	@Override
 	public void createOrder() {
-		// TODO Auto-generated method stub
+		CurrentOrder = new SalesOrder(null, null, false, 0, null, 0, 0);
 		
 	}
 
@@ -63,5 +68,7 @@ public class OrderController implements OCIF{
 		// TODO Auto-generated method stub
 		
 	}
+
+	
 
 }

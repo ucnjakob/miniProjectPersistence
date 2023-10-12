@@ -1,13 +1,11 @@
 package database;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-
-import model.Customer;
 import model.Warehouse;
-import model.Warehouseline;
+
 
 public class WarehouseDB implements WDBIF{
 
@@ -19,20 +17,20 @@ public class WarehouseDB implements WDBIF{
 	}
 
 	@Override
-	public Warehouse foudWarehouseByName(String Wname) {
+	public Warehouse findWarehouse(String wName) {
 		Connection dbCon = DBCon.getInstance().getDBcon();
 
+
 		
-		
-		String query = "select * from warehouse where Wname = " + Wname;
+		String query = "select * from warehouse where Wname = ?";
 		try {
-			Statement stmt = dbCon.createStatement();
-			stmt.setQueryTimeout(5);
+			PreparedStatement stmt = dbCon.prepareStatement(query);
+			stmt.setString(1, wName);
 			ResultSet rs = stmt.executeQuery(query);
 			
 			//set varibles to found vlaues
 			rs.next();
-			wareHouse = rs.getString(Wname);				
+			wareHouse = rs.getString(wName);				
 			foundWarehouse = new Warehouse(wareHouse);
 			stmt.close();
 		} 

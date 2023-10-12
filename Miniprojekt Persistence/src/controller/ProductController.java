@@ -1,5 +1,6 @@
 package controller;
 import database.*;
+import model.Product;
 
 public class ProductController implements PCIF{
 	ProductDB pdbif = new ProductDB();
@@ -8,4 +9,9 @@ public class ProductController implements PCIF{
 		// TODO Auto-generated constructor stub
 	}
 
+    public Product findSProduct(String fName) {
+        return pdbif.findProduct(fName);
+    }
 }
+
+

@@ -3,7 +3,7 @@ import model.*;
 
 public interface WDBIF {
 	
-	public  Warehouse foudWarehouseByName(String Wname);
+	public  Warehouse findWarehouse(String Wname);
 
 }
 

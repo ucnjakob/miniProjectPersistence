@@ -3,8 +3,8 @@ package model;
 public class Warehouse {
 	String wName;
 	
-	public Warehouse(String wareHouse) {
-		this.wName = wareHouse;
+	public Warehouse(String wName) {
+		this.wName = wName;
 	}
 
 	public String getwName() {
