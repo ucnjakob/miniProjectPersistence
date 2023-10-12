@@ -4,7 +4,7 @@ import model.Customer;
 
 public interface CCIF {
 	
-	public Customer findCustomer(int phoneNo);
+	public Customer findCustomer(int PhoneNo);
 }
 
 

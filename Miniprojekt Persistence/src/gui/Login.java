@@ -28,7 +28,7 @@ public class Login extends JDialog {
 	private JPasswordField pswPassword;
 	private JTextField txtUsename;
 	private Staff CurrentStaff;
-	private OrderController OC;
+	private OCIF OC;
 	private JLabel lblError;
 	
 

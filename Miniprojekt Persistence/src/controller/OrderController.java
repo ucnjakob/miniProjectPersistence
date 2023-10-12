@@ -34,7 +34,7 @@ public class OrderController implements OCIF{
 	}
 
 	@Override
-	public Customer findCustomer(String name) {
+	public Customer findCustomer(int name) {
 		Customer foundCustomer = ccif.findCustomer(name);
 		return foundCustomer;
 	}
@@ -47,7 +47,7 @@ public class OrderController implements OCIF{
 
 	@Override
 	public Product findProduct(String name) {
-		Product foundProduct = pcif.findProduct(name);
+		Product foundProduct = pcif.findSProduct(name);
 		return foundProduct;
 	}
 
