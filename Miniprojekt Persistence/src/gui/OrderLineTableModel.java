@@ -22,7 +22,7 @@ public class OrderLineTableModel extends AbstractTableModel {
 	
 	
 	public static final String[] COL_NAMES = 
-		{"Navn", "Antal", "Stk Pris", "Subtotal"};
+		{"Navn", "Antal", "Stk Pris", "Subtotal","lokation"};
 	
 	
 	public OrderLineTableModel()
@@ -80,6 +80,8 @@ public class OrderLineTableModel extends AbstractTableModel {
 		case 3:
 			res += (ol.getTotalAmount() + " DKK");
 			break;
+		case 4:
+			res += (ol.getProductName());
 		default:
 			res = "Der skete en fejl!";
 			

@@ -8,6 +8,7 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+
 import controller.*;
 import model.*;
 
@@ -20,6 +21,7 @@ import javax.swing.JTable;
 import java.awt.event.ActionListener;
 import java.util.List;
 import java.awt.event.ActionEvent;
+import javax.swing.JScrollPane;
 
 public class OrderGUI extends JDialog {
 
@@ -27,11 +29,12 @@ public class OrderGUI extends JDialog {
 	private JTextField txtVareNUmmer;
 	private JTextField txtAntal;
 	private JTextField txtVareHus;
-	private JTable tblorder;
 	private OrderLineTableModel otm;
 	private OrderController orderController;
 	private Staff currentStaff;
 	private JLabel lblUser;
+	private SalesOrder currentOrder;
+	private JTable tblOrder;
 
 	/**
 	 * Launch the application.
@@ -52,6 +55,7 @@ public class OrderGUI extends JDialog {
 	public OrderGUI(Staff CurrentStaff) {
 		this.currentStaff = CurrentStaff;
 		this.orderController = new OrderController();
+		orderController.createOrder();
 		setModal(true);
 		setBounds(100, 100, 729, 557);
 		getContentPane().setLayout(new BorderLayout());
@@ -75,10 +79,10 @@ public class OrderGUI extends JDialog {
 			JPanel panel = new JPanel();
 			contentPanel.add(panel, BorderLayout.CENTER);
 			GridBagLayout gbl_panel = new GridBagLayout();
-			gbl_panel.columnWidths = new int[]{79, 96, 412, 49, 49, 0};
-			gbl_panel.rowHeights = new int[]{20, 20, 20, 23, 35, 267, 23, 0};
+			gbl_panel.columnWidths = new int[]{79, 96, 417, 44, 49, 0};
+			gbl_panel.rowHeights = new int[]{20, 20, 20, 23, 266, 23, 0};
 			gbl_panel.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-			gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+			gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 			panel.setLayout(gbl_panel);
 			
 			JLabel lblVareNummer = new JLabel("Vare Nummer : ");
@@ -143,14 +147,17 @@ public class OrderGUI extends JDialog {
 			gbc_btnTilføj.gridy = 3;
 			panel.add(btnTilføj, gbc_btnTilføj);
 			
-			tblorder = new JTable();
-			GridBagConstraints gbc_tblorder = new GridBagConstraints();
-			gbc_tblorder.fill = GridBagConstraints.BOTH;
-			gbc_tblorder.insets = new Insets(0, 0, 5, 0);
-			gbc_tblorder.gridwidth = 5;
-			gbc_tblorder.gridx = 0;
-			gbc_tblorder.gridy = 5;
-			panel.add(tblorder, gbc_tblorder);
+			JScrollPane scrollPane = new JScrollPane();
+			GridBagConstraints gbc_scrollPane = new GridBagConstraints();
+			gbc_scrollPane.fill = GridBagConstraints.BOTH;
+			gbc_scrollPane.insets = new Insets(0, 0, 5, 0);
+			gbc_scrollPane.gridwidth = 5;
+			gbc_scrollPane.gridx = 0;
+			gbc_scrollPane.gridy = 4;
+			panel.add(scrollPane, gbc_scrollPane);
+			
+			tblOrder = new JTable();
+			scrollPane.setViewportView(tblOrder);
 			
 			JButton btnFjern = new JButton("Fjern Valgte Vare");
 			GridBagConstraints gbc_btnFjern = new GridBagConstraints();
@@ -158,7 +165,7 @@ public class OrderGUI extends JDialog {
 			gbc_btnFjern.insets = new Insets(0, 0, 0, 5);
 			gbc_btnFjern.gridwidth = 2;
 			gbc_btnFjern.gridx = 0;
-			gbc_btnFjern.gridy = 6;
+			gbc_btnFjern.gridy = 5;
 			panel.add(btnFjern, gbc_btnFjern);
 			
 			JLabel lbltotal = new JLabel("Total :");
@@ -167,7 +174,7 @@ public class OrderGUI extends JDialog {
 			gbc_lbltotal.fill = GridBagConstraints.HORIZONTAL;
 			gbc_lbltotal.insets = new Insets(0, 0, 0, 5);
 			gbc_lbltotal.gridx = 3;
-			gbc_lbltotal.gridy = 6;
+			gbc_lbltotal.gridy = 5;
 			panel.add(lbltotal, gbc_lbltotal);
 			
 			JLabel lblprice = new JLabel("price");
@@ -175,7 +182,7 @@ public class OrderGUI extends JDialog {
 			gbc_lblprice.anchor = GridBagConstraints.NORTH;
 			gbc_lblprice.fill = GridBagConstraints.HORIZONTAL;
 			gbc_lblprice.gridx = 4;
-			gbc_lblprice.gridy = 6;
+			gbc_lblprice.gridy = 5;
 			panel.add(lblprice, gbc_lblprice);
 		}
 		{
@@ -196,12 +203,23 @@ public class OrderGUI extends JDialog {
 			}
 			{
 				JButton cancelButton = new JButton("Cancel");
+				cancelButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						exit();
+					}
+				});
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
-			UpdateOrder();
+			displayOrder();
 			update();
 		}
+	}
+
+	protected void exit() {
+		this.dispose();
+		this.setVisible(false);
+		
 	}
 
 	private void update() {
@@ -214,10 +232,11 @@ public class OrderGUI extends JDialog {
 		this.setVisible(false);
 	}
 	
-	public void UpdateOrder()
+	private void displayOrder()
 	{
 		List<OrderLine> ols = orderController.getOrderLines();
 		otm = new OrderLineTableModel(ols);
-		this.tblorder.setModel(otm);
+		this.tblOrder.setModel(otm);
+		
 	}
 }

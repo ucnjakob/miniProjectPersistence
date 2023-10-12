@@ -123,11 +123,22 @@ public class Login extends JDialog {
 			}
 			{
 				JButton cancelButton = new JButton("Cancel");
+				cancelButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						Exit();
+					}
+				});
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			
 			}
 		}
+	}
+
+	private void Exit() {
+		this.dispose();
+		this.setVisible(false);
+		
 	}
 
 	private void checkuser() {
