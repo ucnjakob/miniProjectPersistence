@@ -26,12 +26,12 @@ public class CustomerDB implements CDBIF{
 		boolean foundIsClub;
 		int tempIsClub;
 		
-		String query = "select * from customer where phoneNo = " + phoneNo;
-		
+		String query = "select * from customer where phoneNo = ?";
+
 		try {
-			Statement stmt = dbCon.createStatement();
-			stmt.setQueryTimeout(5);
-			ResultSet rs = stmt.executeQuery(query);
+			PreparedStatement stmt = dbCon.prepareStatement(query);
+			stmt.setLong(1, phoneNo);
+			ResultSet rs = stmt.executeQuery();
 			
 			//set varibles to found vlaues
 			rs.next();
