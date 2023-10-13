@@ -73,5 +73,55 @@ public class WarehouseDB implements WDBIF{
 		}
 		return isOnStock;
 	}
+	
+	public void updateStock(OrderLine ol, Connection dbCon)
+	{	
+	
+		
+		
+		Product product = ol.getProduct();
+		int qty = ol.getQty();
+		String wName = ol.getWarehouseName();
+		String pName = product.getpName();
+		int newQty = 0;
+		
+		String query1 = ("select * from warehouseLine where productname = ? and warehouseName = ?");
+		
+		try 
+		{	
+			
+			dbCon.setAutoCommit(false);
+			PreparedStatement stmt1 = dbCon.prepareStatement(query1);
+			stmt1.setString(1, pName);
+			stmt1.setString(2, wName);
+			ResultSet rs1 = stmt1.executeQuery();
+			rs1.next();
+			newQty = rs1.getInt("qty");
+			newQty -= qty;
+		}
+		 catch (SQLException e) {
+				
+				e.printStackTrace();
+			}
+		
+		String query2 = ("UPDATE warehouseline SET qty = ? where productName = ? and warehouseName = ?");
+		try 
+		{	
+			
+			PreparedStatement stmt2 = dbCon.prepareStatement(query2);
+			stmt2.setInt(1, newQty);
+			stmt2.setString(2, pName);
+			stmt2.setString(3, wName);
+			ResultSet rs2 = stmt2.executeQuery();
+			
+			
+		}
+		 catch (SQLException e) {
+				
+				e.printStackTrace();
+			}
+		
+		
+	}
 
 }

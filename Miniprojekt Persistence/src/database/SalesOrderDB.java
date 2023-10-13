@@ -2,15 +2,21 @@ package database;
 import java.sql.*;
 import java.util.ArrayList;
 
+import controller.OCIF;
+import controller.OrderController;
+import controller.WCIF;
+import controller.WarehouseController;
 import model.*;
 
 public class SalesOrderDB implements SODBIF{
 
 	
 	Connection dbCon;
+	WCIF wcif;
 	
-	public SalesOrderDB() {
-		// TODO Auto-generated constructor stub
+	public SalesOrderDB() 
+	{
+	wcif = new WarehouseController();
 	}
 
 	@Override
@@ -33,8 +39,10 @@ public class SalesOrderDB implements SODBIF{
 		int customerPhoneNo = order.getCustomer().getPhoneNo();
 		dbCon = DBCon.getInstance().getDBcon();
 		
+		
 		//Statement
 		try {
+			dbCon.setAutoCommit(false); // starting transaction
 			PreparedStatement stmt = dbCon.prepareStatement("INSERT INTO salesOrder(orderDate, deliveryStatus, isrentalProduct, staffLoginId, customerPhoneNo) VALUES (?, ?, ?, ?, ?)");
 			stmt.setString(1, orderDate);
 			stmt.setString(2, deliveryStatus);
@@ -58,12 +66,19 @@ public class SalesOrderDB implements SODBIF{
 			//initialise variables
 			ArrayList<OrderLine> orderLines = order.getOrderLines();
 			
+			
 			//Statement
 			PreparedStatement stmt3 = dbCon.prepareStatement("INSERT INTO OrderLine(salesOrderID, productName, qty, priceSoldAt) VALUES (?, ?, ?, ?)");
 			stmt3.setInt(1, orderId);
 			
 			for(OrderLine ol : orderLines)
-			{
+			{	
+				Product product1 = ol.getProduct();
+				String wName1 = ol.getWarehouseName();
+				int qty1 = ol.getQty();
+				
+				if(wcif.checkStock(product1, wName1, qty1)) 
+				{
 				String productName = ol.getProduct().getpName();
 				int qty = ol.getQty();
 				int priceSoldAt = ol.getPriceSoldAt();
@@ -72,13 +87,28 @@ public class SalesOrderDB implements SODBIF{
 				stmt3.setInt(4, priceSoldAt);
 				
 				stmt3.executeUpdate();
+				wcif.updateStock(ol, dbCon);
+			    }
+				else
+				{
+					dbCon.rollback();
+					dbCon.setAutoCommit(true);
+				}
 			}
-			
+			dbCon.commit();
+			dbCon.setAutoCommit(true);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			if(dbCon != null) {
+			try {
+				dbCon.rollback();
+				dbCon.setAutoCommit(true);
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
-		
 	}
-
+	}
 }

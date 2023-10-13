@@ -6,11 +6,13 @@ public class OrderLine {
 	int qty;
 	int priceSoldAt;
 	SalesOrder order;
+	String warehouseName;
 
-	public OrderLine(Product product, int qty) 
+	public OrderLine(Product product, int qty, String warehouseName) 
 	{
 		this.product = product;
 		this.qty = qty;
+		this.warehouseName = warehouseName;
 	}
 
 	public Product getProduct() {
@@ -54,5 +56,11 @@ public class OrderLine {
 	{
 		return product.getpName();
 	}
+	
+	public String getWarehouseName()
+	{
+		return warehouseName;
+	}
+	
 
 }

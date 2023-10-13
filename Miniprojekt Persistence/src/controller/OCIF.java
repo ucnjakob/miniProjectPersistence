@@ -15,4 +15,5 @@ public interface OCIF {
 	public void createOrder();
 	public void finalizeOrder();
 	public List<OrderLine> getOrderLines();
+	public boolean checkStock(OrderLine ol);
 }

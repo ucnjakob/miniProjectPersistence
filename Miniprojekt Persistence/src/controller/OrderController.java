@@ -14,18 +14,19 @@ public class OrderController implements OCIF{
 	SCIF scif = new StaffController();
 	PCIF pcif = new ProductController();
 	WCIF wcif = new WarehouseController();
-	SODBIF sodbif = new SalesOrderDB();
+	SODBIF sodbif;
 	private SalesOrder currentOrder;
 	private Staff staff;
 	private Customer customer;
 	
-	public OrderController() {
-		// TODO Auto-generated constructor stub
+	public OrderController() 
+	{
+			this.sodbif = new SalesOrderDB();
 	}
 
 	
 	
-
+	
 	@Override
 	public Staff findStaff(String name) {
 		Staff foundStaff = scif.findStaff(name);
@@ -50,7 +51,7 @@ public class OrderController implements OCIF{
 		System.out.println(foundProduct.getpName());
 		if(wcif.checkStock(foundProduct, wName, qty))
 			{
-				OrderLine ol = new OrderLine(foundProduct, qty);
+				OrderLine ol = new OrderLine(foundProduct, qty, wName);
 				currentOrder.addOrderline(ol);
 				System.out.println(ol.getQty());
 			}
@@ -84,7 +85,13 @@ public class OrderController implements OCIF{
 		this.customer = customer;
 	}
 	
-	
+	public boolean checkStock(OrderLine ol)
+	{
+		Product product = ol.getProduct();
+		String wName = ol.getWarehouseName();
+		int qty = ol.getQty();
+		return wcif.checkStock(product, wName, qty);
+	}
 
 	
 

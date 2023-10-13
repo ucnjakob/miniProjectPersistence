@@ -1,5 +1,8 @@
 package controller;
+import java.sql.Connection;
+
 import database.*;
+import model.OrderLine;
 import model.Product;
 import model.Warehouse;
 
@@ -17,6 +20,11 @@ public class WarehouseController implements WCIF{
     {
     	return wdbif.checkStock(product, warehouseName, qty);
     }
-
+    
+    public void updateStock(OrderLine ol, Connection dbCon)
+    	{
+    		wdbif.updateStock(ol, dbCon);
+    	}
+    }
 	
-}
+
